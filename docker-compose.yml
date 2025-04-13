@@ -1,4 +1,12 @@
 services:
+  mongo:
+    image: mongo:latest
+    container_name: quizgpt-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
   api:
     container_name: quizgpt-api
     image: aesbube/quizgpt-api:latest
@@ -8,4 +16,10 @@ services:
     restart: unless-stopped
     ports:
       - "8080:8080"
-    
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/quizgpt_db  
+
+volumes:
+  mongo_data:

@@ -1,0 +1,11 @@
+from pymongo import MongoClient
+
+client = MongoClient("mongodb://mongo:27017/")
+db = client.quizgpt_db
+
+#ignore
+
+collection = db.test_collection
+collection.insert_one({"msg": "Test", "test": True})
+
+print("Document inserted!")
