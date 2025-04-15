@@ -1,7 +1,7 @@
 services:
   mongo:
-    image: mongo:latest
     container_name: quizgpt-mongo
+    image: mongo:latest
     ports:
       - "27017:27017"
     volumes:
@@ -9,7 +9,6 @@ services:
 
   api:
     container_name: quizgpt-api
-    image: aesbube/quizgpt-api:latest
     build:
       context: ./backend
       dockerfile: Dockerfile
