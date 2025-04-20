@@ -7,10 +7,10 @@ services:
     volumes:
       - mongo_data:/data/db
 
-  api:
-    container_name: quizgpt-api
+  users:
+    container_name: quizgpt-users
     build:
-      context: ./backend
+      context: ./backend/users
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
@@ -19,6 +19,16 @@ services:
       - mongo
     environment:
       - MONGO_URL=mongodb://mongo:27017/quizgpt_db  
+
+  api:
+    container_name: quizgpt-api
+    build:
+      context: ./backend/api
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+
 
 volumes:
   mongo_data:
