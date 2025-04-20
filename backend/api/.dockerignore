@@ -1,0 +1,11 @@
+.git
+.gitignore
+**/*.json
+*.rs.bk
+*.swp
+*.md
+*.pdf
+Dockerfile
+.env
+venv
+__pycache__
