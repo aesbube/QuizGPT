@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@theme {
+  --color-groente-m: #C6EF9D;
+  --color-groente-ds: #C8D9B8;
+  --color-chared-m: #222222;
+  --color-chared-l: #2E2E2E;
+  --color-chared-ds: #B9B9B9;
+  --color-tanned-m: #F0F0EE;
+  --color-tanned-l: #F5F5F3;
+  --color-coral-m: #FD8183;
+  --color-coral-d: #CA6769;
+}
+
+@font-face {
+  font-family: 'Violet Sans';
+  src: url('/assets/VioletSans-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+body {
+  font-family: 'Violet Sans', sans-serif;
+}
+
+.btnRed {
+  transition: all 200ms ease-out;
+}
+
+.btnRed:hover {
+  transition: all 200ms ease-in;
+  background-color: var(--color-coral-m);
+  border: 2px solid var(--color-coral-d);
+  color: var(--color-chared-m);
+}
+
+input[type="checkbox"] {
+  accent-color: var(--color-coral-m);
+}
+
+path {
+  transition: filter 1s ease-in-out;
+}
+
