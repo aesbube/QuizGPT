@@ -1,3 +1,20 @@
-<div class="bg-tanned-l rounded-xl p-2 w-fit shadow-2xl">
+<!-- <div class="bg-tanned-l rounded-xl p-2 w-fit shadow-2xl">
   <button class="bg-coral-m outline-2 outline-coral-d px-16 py-1 rounded-md">Sign Out</button>
+</div> -->
+
+<div class="relative">
+  <h1 
+    (click)="toggleDropdown()" 
+    class="w-[35px] h-[35px] bg-chared-m rounded-md text-center align-middle leading-9.5 !text-tanned-m btnRed select-none cursor-pointer"
+  >
+    LK
+  </h1>
+
+  <div *ngIf="isOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-20">
+    <div class="py-1">
+      <button (click)="onSettings()" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Settings</button>
+      <button (click)="onUpgrade()" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Upgrade Plan</button>
+      <button (click)="onLogout()" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Logout</button>
+    </div>
+  </div>
 </div>
