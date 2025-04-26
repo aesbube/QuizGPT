@@ -5,10 +5,13 @@
   --color-chared-m: #222222;
   --color-chared-l: #2E2E2E;
   --color-chared-ds: #B9B9B9;
+  --color-chared-h: #575757;
   --color-tanned-m: #F0F0EE;
   --color-tanned-l: #F5F5F3;
+  --color-tanned-d: #D8D8D3;
   --color-coral-m: #FD8183;
   --color-coral-d: #CA6769;
+
 }
 
 @font-face {
@@ -28,10 +31,9 @@ body {
 }
 
 .btnRed:hover {
-  transition: all 200ms ease-in;
-  background-color: var(--color-coral-m);
-  border: 2px solid var(--color-coral-d);
-  color: var(--color-chared-m);
+  transition: all 120ms ease-in;
+  background-color: var(--color-chared-h);
+  outline: 2px solid var(--color-chared-ds);
 }
 
 input[type="checkbox"] {
@@ -42,3 +44,37 @@ path {
   transition: filter 1s ease-in-out;
 }
 
+input[type="email"], input[type="password"], input[type="text"] {
+  outline: 2px solid var(--color-chared-ds) !important;
+}
+input[type="email"]:focus, input[type="password"]:focus, input[type="text"] {
+  outline: 2px solid var(--color-chared-m) !important;
+}
+
+h1 {
+  color: var(--color-chared-m);
+}
+
+.btnIcon:hover {
+  background-color: var(--color-chared-ds);
+  transition: all 120ms ease-in;
+  outline: 2px solid var(--color-chared-ds);
+}
+.btnIcon {
+  transition: all 200ms ease-out;
+}
+
+.transition {
+  transition: all 250ms ease-in-out;
+}
+
+textarea {
+  outline: 2px solid var(--color-chared-ds) !important;
+}
+
+textarea:focus {
+  outline: 2px solid var(--color-chared-m) !important;
+}
+textarea[placeholder] {
+  color: var(--color-chared-ds) !important;
+}

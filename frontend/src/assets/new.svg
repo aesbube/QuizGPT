@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="100%" height="100%" viewBox="0 0 204 252" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1;">
+    <g transform="matrix(1,0,0,1,-266.393,-124.42)">
+        <g transform="matrix(1.30045,0,0,1.46861,-459.086,48.1346)">
+            <path d="M714.132,94.565C714.132,71.042 692.565,51.944 666,51.944C666,51.944 606,51.944 606,51.944C579.435,51.944 557.868,71.042 557.868,94.565L557.868,180.342C557.868,203.865 579.435,222.963 606,222.963L666,222.963C692.565,222.963 714.132,203.865 714.132,180.342C714.132,180.342 714.132,94.565 714.132,94.565ZM696,94.565C696,79.903 682.557,68 666,68L606,68C589.443,68 576,79.903 576,94.565L576,180.342C576,195.004 589.443,206.907 606,206.907L666,206.907C682.557,206.907 696,195.004 696,180.342L696,94.565Z"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-2,19)">
+            <path d="M315,186L425,186" style="fill:none;stroke:black;stroke-width:17px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-2,49)">
+            <path d="M315,186L425,186" style="fill:none;stroke:black;stroke-width:17px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-2,79)">
+            <path d="M315,186L425,186" style="fill:none;stroke:black;stroke-width:17px;"/>
+        </g>
+        <g transform="matrix(0.5,0,0,1,155.5,109)">
+            <path d="M315,186L425,186" style="fill:none;stroke:black;stroke-width:21.5px;"/>
+        </g>
+    </g>
+</svg>

@@ -18,11 +18,11 @@
       <div class="flex flex-col w-9/12 lg:w-6/12 mx-auto relative">
         <h1 class="text-5xl mb-8">Register</h1>
         <label>Email</label>
-        <input type="email" class="mb-4 mt-2 bg-tanned-l text-xl p-1 rounded-md outline-2 outline-chared-m">
+        <input type="email" class="mb-4 mt-2 bg-tanned-l text-xl p-1 rounded-md">
         <label>Password</label>
-        <input [attr.type]="this.type ? 'text' : 'password'" class="mb-4 mt-2 bg-tanned-l text-xl p-1 rounded-md outline-2 outline-chared-m">
+        <input [attr.type]="this.type ? 'text' : 'password'" class="mb-4 mt-2 bg-tanned-l text-xl p-1 rounded-md">
         <label>Confirm Password</label>
-        <input [attr.type]="this.type ? 'text' : 'password'" class="mb-4 mt-2 bg-tanned-l text-xl p-1 rounded-md outline-2 outline-chared-m">
+        <input [attr.type]="this.type ? 'text' : 'password'" class="mb-4 mt-2 bg-tanned-l text-xl p-1 rounded-md">
         <div class="flex">
           <label>Show Password</label>
           <input type="checkbox" class="ml-4 check" (click)="showPassword()">

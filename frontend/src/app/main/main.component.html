@@ -1,0 +1,24 @@
+<div class="h-dvh relative bg-tanned-d">
+  <app-navbar class="absolute w-full top-0"></app-navbar>
+  <div class="h-dvh flex flex-col-reverse lg:flex-row">
+    <div class="h-dvh bg-tanned-m pt-[50px] px-2 transition-all duration-400 flex flex-col justify-center"
+         [style.flex-basis]="submit ? '50%' : '100%'"
+         [class.rounded-r-xl]="submit">
+        <div class="flex flex-col mx-auto" *ngIf="!submit" @fade>
+          <h1 class="text-2xl text-center mb-4 !text-chared-ds">Enter a prompt or upload a file</h1>
+          <div class="flex justify-center">
+            <textarea
+              class=" rounded-xl w-full resize-none overflow-hidden bg-tanned-l outline-none p-2 text-lg min-h-[42px] min-w-[60vw] lg:min-w-[33vw]"
+              rows="1"
+              (input)="autoGrow($event)"
+              placeholder="Type Something...">
+            </textarea>
+            <button class="ml-2 w-[44px] h-[44px] rounded-md bg-chared-m text-tanned-l text-2xl leading-2 btnRed" (click)="Submit()">→</button>
+          </div>
+        </div>
+    </div>
+    <div class="h-dvh bg-tanned-d pt-[50px] px-2" *ngIf="submit" @fade>
+  dasdsad
+    </div>
+  </div>
+</div>
