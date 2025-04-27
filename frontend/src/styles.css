@@ -9,6 +9,7 @@
   --color-chared-h: #575757;
   --color-tanned-m: #F0F0EE;
   --color-tanned-l: #F5F5F3;
+  --color-tanned-ll: #f8f8f6;
   --color-tanned-d: #D8D8D3;
   --color-coral-m: #FD8183;
   --color-coral-d: #CA6769;
@@ -71,6 +72,7 @@ h1 {
 
 textarea {
   outline: 2px solid var(--color-chared-ds) !important;
+  color: var(--color-chared-m);
 }
 
 textarea:focus {
