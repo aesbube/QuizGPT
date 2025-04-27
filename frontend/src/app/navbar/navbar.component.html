@@ -1,8 +1,13 @@
-<div class="h-[50px] w-full flex justify-between py-1 px-2">
+<div class="h-[50px] w-full flex justify-between py-1 px-2 relative">
   <h1 class="text-3xl leading-12">QuizGPT</h1>
   <div class="flex my-auto">
     <img src="assets/new.svg" class="w-[35px] h-[35px] p-1 rounded-md btnIcon mr-2 cursor-pointer">
-    <app-settings/>
+    <h1 #btn (click)="toggleDropdown()"
+      class="w-[35px] h-[35px] bg-chared-m rounded-md text-center align-middle leading-9.5 !text-tanned-m btnRed select-none cursor-pointer"
+    >
+      LK
+    </h1>
   </div>
+  <app-settings class="absolute top-full right-0 mr-2" *ngIf="this.menuBool"></app-settings>
 </div>
-<!-- <app-settings></app-settings> -->
+

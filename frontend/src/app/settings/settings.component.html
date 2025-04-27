@@ -1,20 +1,12 @@
-<!-- <div class="bg-tanned-l rounded-xl p-2 w-fit shadow-2xl">
-  <button class="bg-coral-m outline-2 outline-coral-d px-16 py-1 rounded-md">Sign Out</button>
-</div> -->
-
-<div class="relative">
-  <h1 
-    (click)="toggleDropdown()" 
-    class="w-[35px] h-[35px] bg-chared-m rounded-md text-center align-middle leading-9.5 !text-tanned-m btnRed select-none cursor-pointer"
-  >
-    LK
-  </h1>
-
-  <div *ngIf="isOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-20">
-    <div class="py-1">
-      <button (click)="onSettings()" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Settings</button>
-      <button (click)="onUpgrade()" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Upgrade Plan</button>
-      <button (click)="onLogout()" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Logout</button>
-    </div>
+<div class="bg-tanned-ll rounded-xl p-2 w-fit shadow-2xl flex flex-col">
+  <div class="flex px-3 py-1 hover:bg-tanned-m transition-all duration-200 rounded-lg">
+    <img src="assets/cogg.svg" class="w-[18px] h-[18px] my-auto">
+    <button (click)="onSettings()" class="text-left px-4 py-2 text-md text-chared-l cursor-pointer w-fit">Settings</button>
   </div>
+  <div class="flex px-3 py-1 hover:bg-tanned-m transition-all duration-200 rounded-lg mb-2">
+    <img src="assets/lightning-01.svg" class="w-[18px] h-[18px] my-auto">
+    <button (click)="onUpgrade()" class="text-left px-4 py-2 text-md text-chared-l cursor-pointer w-fit">Upgrade Plan</button>
+  </div>
+  <button class="bg-coral-m outline-2 outline-coral-d px-16 py-1 rounded-md btnRed">Sign Out</button>
 </div>
+
