@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { NgIf, NgFor, NgClass } from '@angular/common';
 import { SettingsComponent } from "../settings/settings.component";
+import {NavbarComponent} from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-upgrade-plan',
   standalone: true,
-  imports: [NgIf, NgFor, NgClass, SettingsComponent],
+  imports: [NgIf, NgFor, NgClass, SettingsComponent, NavbarComponent],
   templateUrl: './plan.component.html',
 })
 export class UpgradePlanComponent {

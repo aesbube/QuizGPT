@@ -1,31 +1,13 @@
-<div class="min-h-screen flex flex-col items-center p-6 bg-[#F0F0EE]">
-    <header class="w-full flex items-center justify-between mb-12">
-      <div class="flex items-center space-x-2">
-        <div class="text-2xl font-semibold">QuizGPT</div>
-        <span class="text-gray-500">📝</span>
-      </div>
-      <div class="flex items-center space-x-4">
-        <a href="#" class="text-sm text-gray-500 hover:underline pt-1">Help</a>
-      
-        <div class="w-6 h-6 flex items-center justify-center rounded-full border border-gray-400 text-gray-400 text-xs">
-          ?
-        </div>
-      
-        <div class="flex items-center space-x-2">
-            <app-settings/>
-          <span class="text-sm font-medium text-gray-900 pt-1">Luka Krstikj</span>
-        </div>
-      </div>
-      
-    </header>
-  
-    <h1 class="text-3xl font-semibold mb-8">Upgrade your plan</h1>
-  
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full">
+<div class="h-dvh relative bg-tanned-m">
+  <app-navbar class="absolute w-full top-0"></app-navbar>
+  <div class="pt-[50px] flex flex-col justify-center h-[calc(100dvh-50px)] w-full">
+    <h1 class="text-3xl font-semibold mb-8 w-full text-center">Upgrade your plan</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full mx-auto">
       <div
         *ngFor="let plan of plans"
-        class="bg-white rounded-2xl shadow-sm p-8 flex flex-col items-center text-center border"
-        [ngClass]="{ 'border-gray-300': plan.name === currentPlan, 'border-green-400': plan.name !== currentPlan }"
+        class="bg-tanned-l rounded-2xl shadow-sm p-8 flex flex-col items-center text-center border"
+        [ngClass]="{ 'border-gray-300': plan.name === currentPlan, 'border-groente-d border-2': plan.name !== currentPlan }"
       >
         <h2 class="text-xl font-semibold mb-2">{{ plan.name }}</h2>
         <p class="text-3xl font-bold mb-1">
@@ -33,7 +15,7 @@
           <span class="text-sm font-normal text-gray-500">USD/month</span>
         </p>
         <p class="text-gray-600 text-sm mb-6">{{ plan.description }}</p>
-  
+
         <button
           *ngIf="plan.name === currentPlan; else upgradeButton"
           class="bg-gray-200 text-gray-600 px-6 py-2 rounded-full font-semibold cursor-default"
@@ -41,21 +23,21 @@
         >
           Your current plan
         </button>
-  
+
         <ng-template #upgradeButton>
           <button
-            class="bg-green-400 hover:bg-green-500 text-white px-6 py-2 rounded-full font-semibold cursor-pointer"
+            class="bg-groente-d hover:bg-groente-m text-white px-6 py-2 rounded-full font-semibold cursor-pointer transition-all duration-200"
           >
             Get {{ plan.name }}
           </button>
         </ng-template>
-  
-        <ul class="mt-8 text-gray-600 space-y-2 text-sm text-left">
+
+        <ul class="mt-8 text-chared-l space-y-2 text-sm text-left">
           <li *ngFor="let feature of plan.features" class="flex items-start">
-            <span class="text-green-500 mr-2 mt-1">•</span> {{ feature }}
+            <span class="text-groente-d mr-2 mt-1">•</span> {{ feature }}
           </li>
         </ul>
       </div>
     </div>
   </div>
-  
+  </div>
