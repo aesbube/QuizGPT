@@ -26,10 +26,10 @@
    pip install -r requirements.txt
 
 
-Технологии
-Python
-GPT (OpenAI API)
-NLP (spaCy, NLTK, итн.)
-Streamlit (за веб-интерфејс)
-PyMuPDF / pdfminer (за обработка на PDF документи)
+Технологии:
+-Python
+-GPT (OpenAI API)
+-NLP (spaCy, NLTK, итн.)
+-Streamlit (за веб-интерфејс)
+-PyMuPDF / pdfminer (за обработка на PDF документи)
 
