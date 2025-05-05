@@ -1,10 +1,11 @@
 import { Component, Input, input } from '@angular/core';
 import { NgIf } from '@angular/common';
+import {RouterLink, RouterLinkActive} from "@angular/router";
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, RouterLink, RouterLinkActive],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css'
 })

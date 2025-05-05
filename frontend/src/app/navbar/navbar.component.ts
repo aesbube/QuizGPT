@@ -1,13 +1,16 @@
 import {Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {SettingsComponent} from "../settings/settings.component";
 import {NgIf} from "@angular/common";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
     SettingsComponent,
-    NgIf
+    NgIf,
+    RouterLinkActive,
+    RouterLink
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
