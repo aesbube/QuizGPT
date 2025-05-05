@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
-import {SigninComponent} from "./signin/signin.component";
-import {SignupComponent} from "./signup/signup.component";
-import {NavbarComponent} from "./navbar/navbar.component";
-import {MainComponent} from "./main/main.component";
-import { UpgradePlanComponent } from "./plan/plan.component";
+import {RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [SigninComponent, SignupComponent, MainComponent, UpgradePlanComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
