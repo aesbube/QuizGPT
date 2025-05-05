@@ -1,18 +1,32 @@
 import {Component} from '@angular/core';
 import {RouterLink, RouterLinkActive} from "@angular/router";
+import {FormsModule} from "@angular/forms";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-signin',
   standalone: true,
   imports: [
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    FormsModule,
+    NgIf
   ],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.css'
 })
 export class SigninComponent{
   protected type: boolean = false;
+
+  protected mail : string = ""
+  protected password : string = ""
+
+  public message : string = "";
+
+  login() {
+    console.log(this.mail, this.password)
+    this.message = "Test " + this.password;
+  }
 
   showPassword(){
     this.type = !this.type;
