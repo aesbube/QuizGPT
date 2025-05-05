@@ -15,7 +15,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 class UserRegister(BaseModel):
-    username: str
     email: str
     password: str
 
@@ -29,7 +28,7 @@ def register_user(data: UserRegister):
     if existing_user:
         raise HTTPException(status_code=400, detail="User already exists")
     
-    user_id = user.create_user(data.username, data.email, data.password)
+    user_id = user.create_user(data.email, data.password)
     return {"message": "User created", "user_id": user_id}
 
 @app.post("/login", tags=["Auth"])
@@ -38,7 +37,7 @@ def login_user(data: UserLogin):
     if not db_user or not user.verify_password(data.password, db_user["password"]):
         raise HTTPException(status_code=401, detail="Invalid credentials")
     
-    return {"message": f"Welcome back, {db_user['username']}!"}
+    return {"message": f"Welcome back, {db_user['email']}!"}
 
 #@app.get("/ping")
 #def ping():

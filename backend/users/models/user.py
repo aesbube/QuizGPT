@@ -4,7 +4,7 @@ from passlib.context import CryptContext
 from dotenv import load_dotenv
 import os
 
-load_dotenv('../.env')
+load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI")
 
 client = MongoClient(MONGO_URI)
@@ -14,10 +14,9 @@ users_collection = db.users
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
-def create_user(username, email, password):
+def create_user(email, password):
     hashed_password = pwd_context.hash(password)
     user = {
-        "username": username,
         "email": email,
         "password": hashed_password
     }

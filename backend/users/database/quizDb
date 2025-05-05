@@ -10,7 +10,7 @@ db = client.quizgpt_db
 
 #ignore
 
-collection = db.test_collection
-collection.insert_one({"msg": "Test", "test": True})
+#collection = db.test_collection
+#collection.insert_one({"msg": "Test", "test": True})
 
-print("Document inserted!")
+#print("Document inserted!")
