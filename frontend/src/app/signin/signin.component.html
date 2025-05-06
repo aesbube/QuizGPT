@@ -27,7 +27,7 @@
         </div>
         <div class="flex w-full text-chared-m justify-between mt-4 text-xl">
             <button routerLink="/register" routerLinkActive="routerLinkActive" class="p-2 w-[48%] border-2 border-chared-m rounded-md btnRed">Register</button>
-            <button (click)="login()" class="p-2 w-[48%] bg-chared-m text-tanned-m rounded-md btnRed">Log In</button>
+            <button (click)="signin()" class="p-2 w-[48%] bg-chared-m text-tanned-m rounded-md btnRed">Log In</button>
         </div>
         <h1 *ngIf="message.length > 0" class="w-full absolute top-full mt-4 text-tanned-m text-xl text-center rounded-md bg-coral-m border-2 p-2 border-coral-d">{{this.message}}</h1>
       </div>
