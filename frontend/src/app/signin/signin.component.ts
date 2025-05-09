@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {NgIf} from "@angular/common";
-import {HttpClient} from '@angular/common/http';
+import {AuthService} from "../auth.service";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 
 @Component({
@@ -12,7 +13,7 @@ import {HttpClient} from '@angular/common/http';
     RouterLink,
     RouterLinkActive,
     FormsModule,
-    NgIf
+    NgIf,
   ],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.css'
@@ -25,26 +26,12 @@ export class SigninComponent{
 
   public message : string = "";
 
-  constructor(private http: HttpClient) {} 
+  constructor(private authService: AuthService) {}
 
-  signin() {
-    const payload = {
-      email: this.mail,
-      password: this.password
-    };
-
-    this.http.post<any>('http://localhost:8000/login', payload).subscribe({
-      next: (res) => {
-        this.message = res.message;
-      },
-      error: (err) => {
-        if (err.status === 401) {
-          this.message = 'Invalid credentials';
-        } else {
-          this.message = 'Login failed';
-        }
-      }
-    });
+  async signin() {
+    await this.authService.signinWithEmailAndPassword(this.mail, this.password)
+      .then()
+      .catch((error) => {this.message = error.message;});
   }
 
   showPassword() {

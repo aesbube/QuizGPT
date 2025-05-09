@@ -1,13 +1,15 @@
 <div class="h-dvh relative bg-tanned-d">
-  <app-navbar class="absolute w-full top-0"></app-navbar>
+  <app-navbar (promptEmit)="triggerNewPrompt()" class="absolute w-full top-0"></app-navbar>
   <div class="h-dvh flex flex-col-reverse lg:flex-row">
     <div class="h-dvh bg-tanned-m pt-[50px] px-2 transition-all duration-400 flex flex-col justify-center"
          [style.flex-basis]="submit ? '50%' : '100%'"
          [class.rounded-r-2xl]="submit">
+        <div @fade *ngIf="submit">{{this.prompt}}</div>
         <div class="flex flex-col mx-auto" *ngIf="!submit" @fade>
           <h1 class="text-2xl text-center mb-4 !text-chared-ds">Enter a prompt or upload a file</h1>
           <div class="flex justify-center">
             <textarea
+
               class=" rounded-xl w-full resize-none overflow-hidden bg-tanned-l outline-none p-2 text-lg min-h-[42px] min-w-[60vw] lg:min-w-[33vw]"
               rows="1"
               (input)="autoGrow($event)"
@@ -18,8 +20,15 @@
           <button class="p-2 w-[33%] bg-chared-m text-tanned-m rounded-md btnRed mx-auto mt-4">Upload a file</button>
         </div>
     </div>
-    <div class="h-dvh bg-tanned-d pt-[50px] px-2" *ngIf="submit" @fade>
-  dasdsad
+    <div class="w-[50vw] h-dvh bg-tanned-d pt-[50px] px-2 flex flex-col justify-center" *ngIf="submit" @fade>
+        <iframe
+          *ngIf="pdfUrl"
+          src="assets/test.pdf"
+          width="65%"
+          height="85%"
+          class="rounded mx-auto"
+        ></iframe>
+        <button class="bg-groente-m px-4 py-2 text-xl mx-auto mt-4 rounded-md">Download PDF</button>
     </div>
   </div>
 </div>

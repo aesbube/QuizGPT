@@ -25,13 +25,8 @@ export class SettingsComponent {
     this.closeDropdown();
   }
 
-  onUpgrade() {
-    console.log('Upgrade Plan clicked');
-    this.closeDropdown();
-  }
+  //TO-DO
+  signOut(){
 
-  onLogout() {
-    console.log('Logout clicked');
-    this.closeDropdown();
   }
 }

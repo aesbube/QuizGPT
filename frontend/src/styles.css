@@ -78,6 +78,11 @@ textarea {
 textarea:focus {
   outline: 2px solid var(--color-chared-m) !important;
 }
-textarea[placeholder] {
-  color: var(--color-chared-ds) !important;
+textarea::placeholder {
+  color: var(--color-chared-ds);
+}
+
+
+textarea {
+  color: var(--color-chared-m) !important;
 }
