@@ -4,6 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import {AuthService} from "../auth.service";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,12 +27,16 @@ export class SigninComponent{
 
   public message : string = "";
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,private router: Router) {}
 
   async signin() {
-    await this.authService.signinWithEmailAndPassword(this.mail, this.password)
-      .then()
-      .catch((error) => {this.message = error.message;});
+    try {
+      const res = await this.authService.signinWithEmailAndPassword(this.mail, this.password);
+      this.message = res.message;
+      await this.router.navigate(['/']);
+    } catch (error) {
+      this.message = (error as Error).message;
+    }
   }
 
   showPassword() {
