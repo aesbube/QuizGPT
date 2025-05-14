@@ -12,7 +12,7 @@ export class AuthService {
     const payload = { email, password };
     try {
       const res = await firstValueFrom(
-        this.http.post<any>('http://localhost:8000/login', payload)
+        this.http.post<any>('http://localhost:8001/login', payload)
       );
       return res;
     } catch (err: any) {
@@ -25,7 +25,7 @@ export class AuthService {
     const payload = { email, password, confirm_password };
     try {
       const res = await firstValueFrom(
-        this.http.post<any>('http://localhost:8000/register', payload)
+        this.http.post<any>('http://localhost:8001/register', payload)
       );
       return res;
     } catch (err: any) {
