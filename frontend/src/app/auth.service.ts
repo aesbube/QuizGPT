@@ -14,6 +14,7 @@ export class AuthService {
       const res = await firstValueFrom(
         this.http.post<any>('http://localhost:8001/login', payload)
       );
+      console.log(res, payload);
       return res;
     } catch (err: any) {
       const errorMessage = err.status === 401 ? 'Invalid credentials' : 'Login failed';
@@ -27,11 +28,12 @@ export class AuthService {
       const res = await firstValueFrom(
         this.http.post<any>('http://localhost:8001/register', payload)
       );
+      console.log(res, payload);
       return res;
     } catch (err: any) {
-      const errorMessage = 
-        err.status === 400 ? (err.error.detail || 'Bad request') : 
-        err.status === 409 ? 'Email already registered' : 
+      const errorMessage =
+        err.status === 400 ? (err.error.detail || 'Bad request') :
+        err.status === 409 ? 'Email already registered' :
         'Registration failed';
       throw new Error(errorMessage);
     }

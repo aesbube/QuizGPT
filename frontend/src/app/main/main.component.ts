@@ -42,34 +42,87 @@ export class MainComponent {
 
   async Submit(){
     this.submit = true;
-    //await this.fetchPdf();
+    await this.fetchPdf();
   }
 
   triggerNewPrompt(){
     this.submit = false;
     this.prompt = ""
   }
+  selectedFile: File | null = null;
+  previewText: string | null = null;
+  pdfSrc: SafeResourceUrl | null = null;
+  isTextFile = false;
+  isPdfFile = false;
+  isDocxFile = false;
 
+  previewFile(file: File | null): void {
+    if(file) {
+      const fileName = file.name.toLowerCase();
+      this.isTextFile = fileName.endsWith('.txt');
+      this.isPdfFile = fileName.endsWith('.pdf');
+      this.isDocxFile = fileName.endsWith('.docx');
+      this.previewText = null;
+      this.pdfSrc = null;
 
-  //PDF Result
-
-  pdfUrl: SafeResourceUrl | null  = "assets/test.pdf";
-  async fetchPdf() {
-    const blob = new Blob([this.prompt], { type: 'text/plain' });
-    const file = new File([blob], 'prompt.txt', { type: 'text/plain' });
-    const formData = new FormData();
-    formData.append('file', file);
-    this.http.post('http://localhost:8000/extract-text', formData, { responseType: 'blob' })
-      .subscribe({
-        next: (pdfBlob) => {
-          const url = URL.createObjectURL(pdfBlob);
-          this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-        },
-        error: (err) => {
-          console.error('PDF generation failed:', err);
-        }
-      });
+      if (this.isTextFile) {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.previewText = e.target.result;
+        };
+        reader.readAsText(file);
+      } else if (this.isPdfFile) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.pdfSrc = this.sanitizer.bypassSecurityTrustResourceUrl(reader.result as string);
+        };
+        reader.readAsDataURL(file); // base64 to embed in <iframe>
+      }
+    }
   }
 
+  //PDF Result
+  pdfUrl: SafeResourceUrl | null  = "assets/test.pdf";
+  async fetchPdf() {
+    if (!this.selectedFile) {
+      alert("Please select a file first.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', this.selectedFile);
+
+    this.http.post('http://localhost:8000/extract-text', formData, {
+      responseType: 'blob' // because the backend returns a PDF
+    }).subscribe(blob => {
+      // Trigger download of returned PDF
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'quiz.pdf';
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('Upload error:', error);
+    });
+  }
+
+
+
+
+
+  onFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input && input.files) {
+      this.selectedFile = input.files[0];
+      console.log(this.selectedFile);
+    }
+  }
+
+  async uploadFile($event: Event) {
+    this.onFileChange($event)
+    await this.Submit();
+    this.previewFile(this.selectedFile);
+  }
 }
 

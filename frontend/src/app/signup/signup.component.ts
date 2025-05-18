@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     RouterLinkActive,
     RouterLink,
-    FormsModule 
+    FormsModule
   ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
@@ -38,7 +38,7 @@ export class SignupComponent {
     try {
       const res = await this.authService.signupWithEmailAndPassword(this.email, this.password, this.confirmPassword);
       this.message = res.message;
-      await this.router.navigate(['/signin']); 
+      await this.router.navigate(['/signin']);
     } catch (error) {
       console.error('Signup error:', error);
       this.message = (error as Error).message;
