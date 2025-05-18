@@ -4,9 +4,8 @@
     <div class="h-dvh bg-tanned-m pt-[50px] px-2 transition-all duration-400 flex flex-col justify-center"
          [style.flex-basis]="submit ? '50%' : '100%'"
          [class.rounded-r-2xl]="submit">
-        <div @fade *ngIf="submit" class="h-full mt-8">
+        <div @fade *ngIf="submit" class="h-full mt-8 w-[50vw]">
           {{this.prompt}}
-          <!-- Preview Section -->
           <div *ngIf="previewText && isTextFile">
             <pre>{{ previewText }}</pre>
           </div>
@@ -31,8 +30,7 @@
               class=" rounded-xl w-full resize-none overflow-hidden bg-tanned-l outline-none p-2 text-lg min-h-[42px] min-w-[60vw] lg:min-w-[33vw]"
               rows="1"
               (input)="autoGrow($event)"
-              placeholder="Type Something...">
-            </textarea>
+              placeholder="Type Something..."></textarea>
             <button class="ml-2 w-[44px] h-[44px] rounded-md bg-chared-m text-tanned-l text-2xl leading-2 btnRed" (click)="Submit()">→</button>
           </div>
           <label for="uploadm" class="text-center p-2 w-[33%] bg-chared-m text-tanned-m rounded-md btnRed mx-auto mt-4">Upload File</label>
@@ -46,7 +44,7 @@
           height="85%"
           class="rounded mx-auto"
         ></iframe>
-        <button class="bg-groente-m px-4 py-2 text-xl mx-auto mt-4 rounded-md">Download PDF</button>
+        <button class="bg-groente-m px-4 py-2 text-xl mx-auto mt-4 rounded-md" (click)="Download()">Download PDF</button>
     </div>
   </div>
 </div>

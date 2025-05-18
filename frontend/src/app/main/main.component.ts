@@ -1,53 +1,45 @@
 import { Component } from '@angular/core';
-import {NavbarComponent} from "../navbar/navbar.component";
-import {NgClass, NgIf} from "@angular/common";
+import { NavbarComponent } from '../navbar/navbar.component';
+import { NgClass, NgIf } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
-import {FormsModule} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
-import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [
-    NavbarComponent,
-    NgIf,
-    FormsModule,
-  ],
+  imports: [NavbarComponent, NgIf, FormsModule],
   animations: [
     trigger('fade', [
       transition(':enter', [
         style({ opacity: 0 }),
         animate('300ms ease-in', style({ opacity: 1 })),
       ]),
-      transition(':leave', [
-        animate('250ms ease-out', style({ opacity: 0 })),
-      ]),
+      transition(':leave', [animate('250ms ease-out', style({ opacity: 0 }))]),
     ]),
   ],
   templateUrl: './main.component.html',
-  styleUrl: './main.component.css'
+  styleUrl: './main.component.css',
 })
 export class MainComponent {
-
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {
-  }
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
   public submit: boolean = false;
-  protected prompt: string = "";
+  protected prompt: string = '';
 
   autoGrow(event: Event) {
     const textarea = event.target as HTMLTextAreaElement;
-    textarea.style.height = 'auto'; // Reset height
-    textarea.style.height = textarea.scrollHeight + 'px'; // Set new height based on content
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
   }
 
-  async Submit(){
+  async Submit() {
     this.submit = true;
     await this.fetchPdf();
   }
 
-  triggerNewPrompt(){
+  triggerNewPrompt() {
     this.submit = false;
-    this.prompt = ""
+    this.prompt = '';
   }
   selectedFile: File | null = null;
   previewText: string | null = null;
@@ -57,7 +49,7 @@ export class MainComponent {
   isDocxFile = false;
 
   previewFile(file: File | null): void {
-    if(file) {
+    if (file) {
       const fileName = file.name.toLowerCase();
       this.isTextFile = fileName.endsWith('.txt');
       this.isPdfFile = fileName.endsWith('.pdf');
@@ -74,45 +66,61 @@ export class MainComponent {
       } else if (this.isPdfFile) {
         const reader = new FileReader();
         reader.onload = () => {
-          this.pdfSrc = this.sanitizer.bypassSecurityTrustResourceUrl(reader.result as string);
+          this.pdfSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
+            reader.result as string
+          );
         };
         reader.readAsDataURL(file); // base64 to embed in <iframe>
       }
     }
   }
 
-  //PDF Result
   pdfFile: File | null = null;
-  resultSrc: SafeResourceUrl | null = null// Add this to your component
+  resultSrc: SafeResourceUrl | null = null; 
 
   async fetchPdf() {
     if (!this.selectedFile) {
-      alert("Please select a file first.");
+      alert('Please select a file first.');
       return;
     }
 
     const formData = new FormData();
     formData.append('file', this.selectedFile);
 
-    this.http.post('http://localhost:8000/extract-text', formData, {
-      responseType: 'blob'
-    }).subscribe(blob => {
-      // Convert blob to File object
-      this.pdfFile = new File([blob], 'quiz.pdf', { type: 'application/pdf' });
+    this.http
+      .post('http://localhost:8000/extract-text', formData, {
+        responseType: 'blob',
+      })
+      .subscribe(
+        (blob) => {
+          this.pdfFile = new File([blob], 'quiz.pdf', {
+            type: 'application/pdf',
+          });
 
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.resultSrc = this.sanitizer.bypassSecurityTrustResourceUrl(reader.result as string);
-      };
-      reader.readAsDataURL(this.pdfFile); // base64 to embed in <iframe>
-    }, error => {
-      console.error('Upload error:', error);
-    });
+          const reader = new FileReader();
+          reader.onload = () => {
+            this.resultSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
+              reader.result as string
+            );
+          };
+          reader.readAsDataURL(this.pdfFile);
+        },
+        (error) => {
+          console.error('Upload error:', error);
+        }
+      );
   }
 
-
-
-
+  Download() {
+    if (this.pdfFile) {
+      const url = window.URL.createObjectURL(this.pdfFile);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = this.pdfFile.name;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }
+  }
 
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -123,9 +131,8 @@ export class MainComponent {
   }
 
   async uploadFile($event: Event) {
-    this.onFileChange($event)
+    this.onFileChange($event);
     await this.Submit();
     this.previewFile(this.selectedFile);
   }
 }
-
