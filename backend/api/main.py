@@ -63,5 +63,5 @@ async def extract_text(file: UploadFile = File(...)):
     pdf_data = generate_pdf(quiz_text)
 
     return StreamingResponse(io.BytesIO(pdf_data), media_type="application/pdf", headers={
-        "Content-Disposition": "attachment; filename=quiz.pdf"
+        "Content-Disposition": "inline; filename=quiz.pdf"
     })
