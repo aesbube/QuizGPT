@@ -76,12 +76,16 @@ export class MainComponent {
   }
 
   pdfFile: File | null = null;
-  resultSrc: SafeResourceUrl | null = null; 
+  resultSrc: SafeResourceUrl | null = null;
 
   async fetchPdf() {
     if (!this.selectedFile) {
-      alert('Please select a file first.');
-      return;
+      const txtFile = new File(
+        [this.prompt],
+        "output.txt",
+        { type: "text/plain" }
+      );
+      this.selectedFile = txtFile;
     }
 
     const formData = new FormData();

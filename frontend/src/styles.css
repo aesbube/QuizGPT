@@ -34,8 +34,8 @@ body {
 
 .btnRed:hover {
   transition: all 120ms ease-in;
-  background-color: var(--color-chared-h);
-  outline: 2px solid var(--color-chared-ds);
+  background-color: var(--color-coral-d);
+  outline: 2px solid var(--color-coral-m);
 }
 
 input[type="checkbox"] {
@@ -85,4 +85,25 @@ textarea::placeholder {
 
 textarea {
   color: var(--color-chared-m) !important;
+}
+
+.download{
+  transition: all 200ms ease-out;
+  outline: 2px solid var(--color-groente-d) !important;
+}
+
+.download:hover{
+  background-color: var(--color-groente-ds);
+  outline: 2px solid var(--color-groente-m) !important;
+  transition: all 200ms ease-out;
+}
+
+.btnChared {
+  transition: all 200ms ease-out;
+}
+
+.btnChared:hover {
+  transition: all 120ms ease-in;
+  background-color: var(--color-chared-ds);
+  outline: 2px solid var(--color-chared-ds);
 }

@@ -4,29 +4,36 @@
     <div class="h-dvh bg-tanned-m pt-[50px] px-2 transition-all duration-400 flex flex-col justify-center"
          [style.flex-basis]="submit ? '50%' : '100%'"
          [class.rounded-r-2xl]="submit">
-        <div @fade *ngIf="submit" class="h-full mt-8 w-[50vw]">
-          {{this.prompt}}
-          <div *ngIf="previewText && isTextFile">
-            <pre>{{ previewText }}</pre>
-          </div>
+        <div @fade *ngIf="submit" class="h-full flex flex-col justify-center">
+          <div class="rounded-xl bg-tanned-l w-[80%] h-[88%] mx-auto shadow-xl p-4">
+            <div class="h-full flex flex-col justify-center">
+              <h1 class="text-xl">{{this.prompt}}</h1>
+            </div>
+            <!-- Preview Section -->
+            <div *ngIf="previewText && isTextFile" class="h-full overflow-y-scroll">
+              <pre>{{ previewText }}</pre>
+            </div>
 
-          <div *ngIf="isPdfFile" class="w-full h-full">
-            <iframe
-              [src]="pdfSrc"
-              width="65%"
-              height="85%"
-              class="rounded mx-auto"
-            ></iframe>
-          </div>
+            <div *ngIf="isPdfFile" class="w-full h-full">
+              <iframe
+                [src]="pdfSrc"
+                width="100%"
+                height="100%"
+                class="rounded mx-auto"
+              ></iframe>
+            </div>
 
-          <div *ngIf="isDocxFile">
-            <p>DOCX preview not supported. You can still upload it.</p>
+            <div *ngIf="isDocxFile">
+              <p>DOCX preview not supported. You can still upload it.</p>
+            </div>
           </div>
+          <h1 class="mx-auto !text-tanned-d text-xl px-4 py-2 mx-auto mt-4">Input</h1>
         </div>
         <div class="flex flex-col mx-auto" *ngIf="!submit" @fade>
           <h1 class="text-2xl text-center mb-4 !text-chared-ds">Enter a prompt or upload a file</h1>
           <div class="flex justify-center">
             <textarea
+              [(ngModel)]="prompt"
               class=" rounded-xl w-full resize-none overflow-hidden bg-tanned-l outline-none p-2 text-lg min-h-[42px] min-w-[60vw] lg:min-w-[33vw]"
               rows="1"
               (input)="autoGrow($event)"
@@ -38,13 +45,15 @@
         </div>
     </div>
     <div class="w-[50vw] h-dvh bg-tanned-d pt-[50px] px-2 flex flex-col justify-center" *ngIf="submit" @fade>
+      <div class="rounded-xl bg-tanned-l w-[80%] h-[88%] mx-auto shadow-xl p-4">
         <iframe
           [src]="resultSrc"
-          width="65%"
-          height="85%"
+          width="100%"
+          height="100%"
           class="rounded mx-auto"
         ></iframe>
-        <button class="bg-groente-m px-4 py-2 text-xl mx-auto mt-4 rounded-md" (click)="Download()">Download PDF</button>
+      </div>
+      <button class="bg-groente-m px-4 py-2 text-xl mx-auto mt-4 rounded-md download" (click)="Download()">Download PDF</button>
     </div>
   </div>
 </div>
