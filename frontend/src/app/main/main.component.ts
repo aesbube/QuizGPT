@@ -82,7 +82,9 @@ export class MainComponent {
   }
 
   //PDF Result
-  pdfUrl: SafeResourceUrl | null  = "assets/test.pdf";
+  pdfFile: File | null = null;
+  resultSrc: SafeResourceUrl | null = null// Add this to your component
+
   async fetchPdf() {
     if (!this.selectedFile) {
       alert("Please select a file first.");
@@ -93,15 +95,16 @@ export class MainComponent {
     formData.append('file', this.selectedFile);
 
     this.http.post('http://localhost:8000/extract-text', formData, {
-      responseType: 'blob' // because the backend returns a PDF
+      responseType: 'blob'
     }).subscribe(blob => {
-      // Trigger download of returned PDF
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'quiz.pdf';
-      a.click();
-      window.URL.revokeObjectURL(url);
+      // Convert blob to File object
+      this.pdfFile = new File([blob], 'quiz.pdf', { type: 'application/pdf' });
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.resultSrc = this.sanitizer.bypassSecurityTrustResourceUrl(reader.result as string);
+      };
+      reader.readAsDataURL(this.pdfFile); // base64 to embed in <iframe>
     }, error => {
       console.error('Upload error:', error);
     });

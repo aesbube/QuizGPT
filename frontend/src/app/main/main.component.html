@@ -40,6 +40,12 @@
         </div>
     </div>
     <div class="w-[50vw] h-dvh bg-tanned-d pt-[50px] px-2 flex flex-col justify-center" *ngIf="submit" @fade>
+        <iframe
+          [src]="resultSrc"
+          width="65%"
+          height="85%"
+          class="rounded mx-auto"
+        ></iframe>
         <button class="bg-groente-m px-4 py-2 text-xl mx-auto mt-4 rounded-md">Download PDF</button>
     </div>
   </div>
