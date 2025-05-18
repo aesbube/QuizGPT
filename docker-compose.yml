@@ -1,12 +1,4 @@
 services:
-  mongo:
-    container_name: quizgpt-mongo
-    image: mongo:latest
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
-
   users:
     container_name: quizgpt-users
     build:
@@ -14,11 +6,9 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
-      - "8080:8080"
-    depends_on:
-      - mongo
+      - "8001:8001"
     environment:
-      - MONGO_URL=mongodb://mongo:27017/quizgpt_db  
+      - MONGO_URI=mongodb+srv://admin:adminPass@quizgpt.itkoce0.mongodb.net/?retryWrites=true&w=majority&appName=QuizGPT
 
   api:
     container_name: quizgpt-api
@@ -27,8 +17,19 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
-      - "8081:8081"
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY=AIzaSyAqDFLl2zouiaukXx8FQ9bnZNDyW2oJw2U
 
+  frontend:
+    container_name: quizgpt-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "4200:4200"
+    depends_on:
+      - users
+      - api
 
-volumes:
-  mongo_data:
