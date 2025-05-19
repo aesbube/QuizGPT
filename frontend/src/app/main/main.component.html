@@ -6,9 +6,11 @@
          [class.rounded-r-2xl]="submit">
         <div @fade *ngIf="submit" class="h-full flex flex-col justify-center">
           <div class="rounded-xl bg-tanned-l w-[80%] h-[88%] mx-auto shadow-xl p-4">
-            <div class="h-full flex flex-col justify-center">
-              <h1 class="text-xl">{{this.prompt}}</h1>
-            </div>
+            @if (this.prompt.length > 0) {
+              <div class="h-full flex flex-col justify-center">
+                <h1 class="text-xl">{{this.prompt}}</h1>
+              </div>
+            }
             <!-- Preview Section -->
             <div *ngIf="previewText && isTextFile" class="h-full overflow-y-scroll">
               <pre>{{ previewText }}</pre>
