@@ -4,28 +4,31 @@ services:
     build:
       context: ./backend/users
       dockerfile: Dockerfile
+    image: aesbube/quizgpt-users:latest
     restart: unless-stopped
     ports:
       - "8001:8001"
     environment:
-      - MONGO_URI=mongodb+srv://admin:adminPass@quizgpt.itkoce0.mongodb.net/?retryWrites=true&w=majority&appName=QuizGPT
+      - MONGO_URI
 
   api:
     container_name: quizgpt-api
     build:
       context: ./backend/api
       dockerfile: Dockerfile
+    image: aesbube/quizgpt-api:latest
     restart: unless-stopped
     ports:
       - "8000:8000"
     environment:
-      - GEMINI_API_KEY=AIzaSyAqDFLl2zouiaukXx8FQ9bnZNDyW2oJw2U
+      - GEMINI_API_KEY
 
   frontend:
     container_name: quizgpt-frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    image: aesbube/quizgpt-frontend:latest
     restart: unless-stopped
     ports:
       - "4200:4200"

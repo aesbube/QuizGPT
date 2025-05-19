@@ -1,8 +1,38 @@
+version: '3.8'
+
 services:
-  api:
-    container_name: quizgpt-api
-    image: aesbube/quizgpt-api:latest
-    restart: unless-stopped
+  users:
+    build:
+      context: ./backend/users
+      dockerfile: Dockerfile
+    image: aesbube/quizgpt-users:latest
+    restart: always
     ports:
-      - "8080:8080"
-    
+      - "8001:8001"
+    environment:
+      - MONGO_URI
+
+  api:
+    build:
+      context: ./backend/api
+      dockerfile: Dockerfile
+    image: aesbube/quizgpt-api:latest
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY
+    depends_on:
+      - users
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: aesbube/quizgpt-frontend:latest
+    restart: always
+    ports:
+      - "4200:4200"
+    depends_on:
+      - users
+      - api
