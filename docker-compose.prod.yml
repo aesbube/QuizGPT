@@ -1,10 +1,5 @@
-version: '3.8'
-
 services:
   users:
-    build:
-      context: ./backend/users
-      dockerfile: Dockerfile
     image: aesbube/quizgpt-users:latest
     restart: always
     ports:
@@ -13,9 +8,6 @@ services:
       - MONGO_URI
 
   api:
-    build:
-      context: ./backend/api
-      dockerfile: Dockerfile
     image: aesbube/quizgpt-api:latest
     restart: always
     ports:
@@ -26,9 +18,6 @@ services:
       - users
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
     image: aesbube/quizgpt-frontend:latest
     restart: always
     ports:
